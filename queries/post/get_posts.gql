@@ -1,0 +1,24 @@
+fragment post on Post {
+	postId: id
+	title
+	body
+	indexRef
+	createdAt
+	user {
+		id
+		firstName
+	}
+}
+
+query GET_POSTS {
+	posts(
+		input: {
+			_sort: "inputRef"
+			_order: DESC
+			_start: 0
+			_limit: 10
+		}
+	) {
+		...post
+	}
+}

@@ -1,0 +1,17 @@
+fragment post on Post {
+	postId: id
+	title
+	body
+	indexRef
+	createdAt
+	user {
+		id
+		firstName
+	}
+}
+
+query GET_POST {
+	post(id: "9i3ggQf") {
+		...post
+	}
+}

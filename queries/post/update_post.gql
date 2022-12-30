@@ -1,0 +1,18 @@
+mutation UPDATE_POST {
+	updatePost(
+		postId: "9i3ggQf",
+		data: {
+		title: "O titulo 1.0",
+		body: " O Corpo 2.0",
+		userId: "903"
+	}) {
+		id
+		title
+		body
+		indexRef
+		createdAt
+		user {
+			firstName
+		}
+	}
+}

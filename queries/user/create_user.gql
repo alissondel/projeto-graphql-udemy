@@ -1,0 +1,19 @@
+mutation CREATE_USER {
+	createUser(data: {
+		firstName: "Alisson"
+		lastName: "Delatim"
+		userName: "alissondel"
+		password: "123@Mudar"
+	}) {
+		id
+		firstName
+		lastName
+		userName
+		indexRef
+		createdAt
+		posts {
+			id
+			title
+		}
+	}
+}

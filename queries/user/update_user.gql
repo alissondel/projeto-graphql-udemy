@@ -1,0 +1,21 @@
+mutation UPDATE_USER {
+	updateUser(
+		userId: "J4nBP-L"
+		data: {
+			firstName: "ALisson C."
+			lastName: "Delatim"
+			userName: "alissondel"
+}) {
+		id
+		firstName
+		lastName
+		userName
+		indexRef
+		createdAt
+		posts {
+			id
+			title
+
+		}
+	}
+}

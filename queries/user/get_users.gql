@@ -1,0 +1,29 @@
+fragment user on User {
+	userId: id
+	firstName
+	lastName
+	userName
+	indexRef
+	createdAt
+	posts {
+		id
+		title
+		user {
+			id
+			firstName
+		}
+	}
+}
+
+query GET_USERS {
+	users(
+		input: {
+			_sort: "inputRef"
+			_order: ASC
+			_start: 0
+			_limit: 5
+		}
+	) {
+		...user
+	}
+}

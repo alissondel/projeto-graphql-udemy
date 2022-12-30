@@ -1,0 +1,28 @@
+fragment user on User {
+	userId: id
+	firstName
+	lastName
+	userName
+	indexRef
+	createdAt
+	posts {
+		id
+		title
+		user {
+			id
+			firstName
+		}
+	}
+}
+
+query GET_USER($id: ID!){
+	user(id: $id) {
+		...user
+	}
+}
+
+
+Query Variables:
+{
+	"id": 90
+}
