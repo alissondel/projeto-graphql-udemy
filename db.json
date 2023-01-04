@@ -167,7 +167,8 @@
       "passwordHash": "$2b$12$gauFe93F3EmscrN0EjgjFuzfpfm4T.KPpBHq7JhIZJnYa08VT57Ca",
       "indexRef": 21,
       "createdAt": "2022-12-29T17:32:07.179Z",
-      "id": "hxKd5IV"
+      "id": "hxKd5IV",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJoeEtkNUlWIiwiaWF0IjoxNjcyODU5MjgwLCJleHAiOjE2NzM0NjQwODB9.JHvH9o14AeLWJuE-72cEJa9YOn_ugDpCzXmZRrxg1Tk"
     }
   ],
   "posts": [

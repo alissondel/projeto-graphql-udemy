@@ -1,0 +1,3 @@
+mutation LOGOUT_USER {
+	logout(userName: "alissondel")
+}

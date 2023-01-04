@@ -1,0 +1,9 @@
+mutation LOGIN_USER {
+	login(data: {
+		userName: "alissondel"
+		password: "123@Mudar"
+	}) {
+	userId
+	token
+	}
+}

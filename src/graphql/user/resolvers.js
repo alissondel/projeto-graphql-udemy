@@ -1,6 +1,13 @@
+import { AuthenticationError } from 'apollo-server';
+import { checkOwner } from '../login/utils/login-functions';
+
 // QUERY RESOLVERS
-const user = async (_, { id }, { dataSources }) => {
+const user = async (_, { id }, { dataSources, loggedUserId }) => {
   try {
+    if (!loggedUserId) {
+      throw new AuthenticationError('You have to log in');
+    }
+
     const user = await dataSources.userApi.getUser(id);
     return user;
   } catch (error) {
@@ -8,8 +15,12 @@ const user = async (_, { id }, { dataSources }) => {
   }
 };
 
-const users = async (_, { input }, { dataSources }) => {
+const users = async (_, { input }, { dataSources, loggedUserId }) => {
   try {
+    if (!loggedUserId) {
+      throw new AuthenticationError('You have to log in');
+    }
+
     const users = await dataSources.userApi.getUsers(input);
     return users;
   } catch (error) {
@@ -19,20 +30,44 @@ const users = async (_, { input }, { dataSources }) => {
 
 // MUTATION RESOLVERS
 const createUser = async (_, { data }, { dataSources }) => {
-  return dataSources.userApi.createUser(data);
+  try {
+    return dataSources.userApi.createUser(data);
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
-const updateUser = async (_, { userId, data }, { dataSources }) => {
-  return dataSources.userApi.updateUser(userId, data);
+const updateUser = async (
+  _,
+  { userId, data },
+  { dataSources, loggedUserId },
+) => {
+  try {
+    checkOwner(userId, loggedUserId);
+
+    return dataSources.userApi.updateUser(userId, data);
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
-const deleteUser = async (_, { userId }, { dataSources }) => {
-  return dataSources.userApi.deleteUser(userId);
+const deleteUser = async (_, { userId }, { dataSources, loggedUserId }) => {
+  try {
+    checkOwner(userId, loggedUserId);
+
+    return dataSources.userApi.deleteUser(userId);
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 // FIELD RESOLVERS
 const posts = ({ id }, _, { dataSources }) => {
-  return dataSources.postApi.batchLoadById(id);
+  try {
+    return dataSources.postApi.batchLoadById(id);
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 export const userResolvers = {
