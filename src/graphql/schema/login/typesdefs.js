@@ -5,12 +5,10 @@ export const loginTypedefs = gql`
     login(data: LoginInput!): Login!
     logout(userName: String!): Boolean!
   }
-
   input LoginInput {
     userName: String!
     password: String!
   }
-
   type Login {
     userId: String!
     token: String!

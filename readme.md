@@ -22,7 +22,7 @@ $ npm i apollo-server graphql
 $ npx https://github.com/luizomf/eslint-prettier
 $ npm i sucrase nodemon -D
 $ npm install knex --save
-$ npm install mysql
+$ npm install mysql2
 ```
 
 ## Rodar sucrase

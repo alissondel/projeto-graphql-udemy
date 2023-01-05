@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server';
+import { gql } from 'apollo-server-core';
 
 export const postTypeDefs = gql`
   extend type Query {
@@ -16,20 +16,19 @@ export const postTypeDefs = gql`
     id: ID!
     title: String!
     body: String!
+    user: User!
+    comments: [Comment!]!
     indexRef: Int!
     createdAt: String!
-    user: User!
   }
 
   input CreatePostInput {
     title: String!
     body: String!
-    #userId: String!
   }
 
   input UpdatePostInput {
     title: String
     body: String
-    #userId: String
   }
 `;

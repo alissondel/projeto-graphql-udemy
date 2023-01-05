@@ -1,0 +1,13 @@
+mutation CREATE_COMMENT {
+	createComment(data: {
+		postId: "860"
+		comment: "O comentário da pessoa"
+	}) {
+		id
+		comment
+		user {
+			id
+			userName
+		}
+	}
+}

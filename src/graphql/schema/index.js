@@ -1,23 +1,30 @@
-import { gql } from 'apollo-server';
+import { gql } from 'apollo-server-core';
 
-// TYPEDEFS
-import { userTypeDefs } from './user/typedefs';
-import { postTypeDefs } from './post/typedefs';
+import { apiFiltersResolvers } from './api-filters/resolvers';
 import { apiFiltersTypeDefs } from './api-filters/typedefs';
+
+import { commentResolvers } from './comment/resolvers';
+import { commentTypedefs } from './comment/typedefs';
+
+import { loginResolvers } from './login/resolvers';
 import { loginTypedefs } from './login/typesdefs';
 
-// RESOLVERS
-import { userResolvers } from './user/resolvers';
 import { postResolvers } from './post/resolvers';
-import { apiFiltersResolvers } from './api-filters/resolvers';
-import { loginResolvers } from './login/resolvers';
+import { postTypeDefs } from './post/typedefs';
 
-export const rootTypeDefs = gql`
+import { userResolvers } from './user/resolvers';
+import { userTypeDefs } from './user/typedefs';
+
+const rootTypeDefs = gql`
   type Query {
     _empty: Boolean
   }
 
   type Mutation {
+    _empty: Boolean
+  }
+
+  type Subscription {
     _empty: Boolean
   }
 `;
@@ -26,6 +33,7 @@ const rootResolvers = {
   Query: {
     _empty: () => true,
   },
+
   Mutation: {
     _empty: () => true,
   },
@@ -37,12 +45,13 @@ export const typeDefs = [
   postTypeDefs,
   apiFiltersTypeDefs,
   loginTypedefs,
+  commentTypedefs,
 ];
-
 export const resolvers = [
   rootResolvers,
   userResolvers,
   postResolvers,
   apiFiltersResolvers,
   loginResolvers,
+  commentResolvers,
 ];

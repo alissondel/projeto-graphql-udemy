@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -e 'js' -r dotenv/config -r src/index.js",
+    "dev": "nodemon -e 'js' -r dotenv/config -r sucrase/register src/index.js",
     "server": "json-server --watch db.json",
     "build": "rimraf ./dist && sucrase ./src -d ./dist --transforms imports",
     "start": "npm run server & node -r dotenv/config dist/index.js"
@@ -14,8 +14,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apollo-datasource": "^3.3.2",
     "apollo-datasource-rest": "^3.7.0",
     "apollo-server": "^3.11.1",
+    "apollo-server-caching": "^3.3.0",
     "axios": "^1.2.1",
     "bcrypt": "^5.1.0",
     "dataloader": "^2.1.0",

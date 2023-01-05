@@ -11,6 +11,7 @@ export class LoginApi extends RESTDataSource {
 
   async getUser(userName) {
     const user = await this.get('', { userName }, { cacheOptions: { ttl: 0 } });
+
     const found = !!user.length;
 
     if (!found) {
@@ -36,15 +37,6 @@ export class LoginApi extends RESTDataSource {
     const token = this.createJwtToken({ userId });
     await this.patch(userId, { token }, { cacheOptions: { ttl: 0 } });
 
-    // Response Header
-    this.context.res.cookie('jwtToken', token, {
-      secure: true, // Rede segura - Https
-      httpOnly: true, // Não deve ser acessado via código
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
-      path: '/',
-      sameSite: 'none', // 'strict', 'lax', 'none'
-    });
-
     return {
       userId,
       token,
@@ -59,7 +51,6 @@ export class LoginApi extends RESTDataSource {
     }
 
     await this.patch(user[0].id, { token: '' }, { cacheOptions: { ttl: 0 } });
-    this.context.res.clearCookie('jwtToken');
     return true;
   }
 

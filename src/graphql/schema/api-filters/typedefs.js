@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server';
+import { gql } from 'apollo-server-core';
 
 export const apiFiltersTypeDefs = gql`
   input ApiFiltersInput {
@@ -7,7 +7,6 @@ export const apiFiltersTypeDefs = gql`
     _start: Int
     _limit: Int
   }
-
   enum ApiFilterOrder {
     ASC
     DESC
